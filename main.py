@@ -1,6 +1,5 @@
 import pygame, sys
-from grid import Grid
-
+from simulation import Simulation
 
 pygame.init()
 
@@ -14,8 +13,12 @@ window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 pygame.display.set_caption("Game of Life")
 
 clock = pygame.time.Clock()
-
-grid = Grid(WINDOW_WIDTH, WINDOW_HEIGHT, CELL_SIZE)
+simulation = Simulation(WINDOW_WIDTH, WINDOW_HEIGHT, CELL_SIZE)
+simulation.grid.cells[5][29] = 1
+simulation.grid.cells[6][0] = 1
+simulation.grid.cells[5][0] = 1
+simulation.grid.cells[4][0] = 1
+print(simulation.count_live_neighbors(simulation.grid, 5, 29))
 
 # Simulation Loop
 while True:
@@ -28,6 +31,6 @@ while True:
     
     # Drawing
     window.fill(GREY)
-    grid.draw(window)
+    simulation.draw(window)
 
     pygame.display.update()
