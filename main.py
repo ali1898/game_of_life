@@ -1,17 +1,21 @@
-import pygame
-import sys
+import pygame, sys
+from grid import Grid
+
 
 pygame.init()
 
 GREY = (29, 29, 29)
 WINDOW_WIDTH = 750
 WINDOW_HEIGHT = 750
+CELL_SIZE = 25
 FPS = 12
 
 window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 pygame.display.set_caption("Game of Life")
 
 clock = pygame.time.Clock()
+
+grid = Grid(WINDOW_WIDTH, WINDOW_HEIGHT, CELL_SIZE)
 
 # Simulation Loop
 while True:
@@ -24,5 +28,6 @@ while True:
     
     # Drawing
     window.fill(GREY)
+    grid.draw(window)
 
     pygame.display.update()
